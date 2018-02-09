@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../blood_bank.png';
 
 class HeaderComponent extends Component {
 
@@ -35,19 +36,23 @@ class HeaderComponent extends Component {
     }
 
     render() {
+        var style = {
+          backgroundImage: "url(" + logo + ")",
+          backgroundSize: "contain",
+          width: "100%",
+          height: "100%",
+          backgroundPosition: "center",
+          display:"inline-block",
+          backgroundRepeat: "no-repeat"
+        };
         return (
             <div className="header">
-                <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="#">WebSiteName</a>
-                        </div>
-                        <ul className="nav nabar-nav navbar-right">
-                            <li><a href="/register">Register</a></li>
-                            <li><a href="/login">Login</a></li>
-                        </ul>
-                    </div>
-                </nav>
+                <a href="/" className="logo-a"><span style={style}></span></a>
+                <div className="header-links">
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+                    <a href="/search">Search</a>
+                </div>
             </div>
         );
     }

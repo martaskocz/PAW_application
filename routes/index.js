@@ -7,8 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/loginuser', function(req, res, next) {
-    console.log("req.session.user");
-    console.log(req.session.user);
     if(req.session.user){
         res.json(req.session.user);
     } else {
@@ -16,9 +14,5 @@ router.get('/loginuser', function(req, res, next) {
     }
 });
 
-
-router.get('/cities', function(req, res, next) {
-
-});
 
 module.exports = router;
