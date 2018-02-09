@@ -1,8 +1,8 @@
-import React from 'react';
-import {Router, Route} from 'react-router';
+/*import React from 'react';
+import {Router, Route} from 'react-router-dom';
 
-import App from '/.components/app';
-import Error404 from '/.components/error404';
+import App from './components/app/index';
+import Error404 from './components/error404/index';
 import Register from './components/user/register';
 
 const Routes = (props) => (
@@ -15,4 +15,4 @@ const Routes = (props) => (
     </Router>
 );
 
-export default Routes;
+export default Routes;*/

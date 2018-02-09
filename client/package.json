@@ -4,16 +4,20 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "moment": "^2.20.1",
     "parsley": "^0.1.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-bootstrap-datetimepicker": "0.0.22",
     "react-custom-validation": "^0.5.7",
+    "react-datetime": "^2.13.0",
     "react-dom": "^16.2.0",
     "react-google-autocomplete": "^1.0.15",
     "react-intl-tel-input": "^4.3.3",
     "react-ionicons": "^2.1.6",
+    "react-modal": "^3.1.12",
+    "react-moment": "^0.7.0",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
     "react-select": "^1.2.1",
     "react-validation": "^3.0.7",
@@ -25,5 +29,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:4007"
+  "proxy": "http://localhost:3000"
 }

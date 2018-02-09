@@ -1,14 +1,30 @@
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
 import React, { Component } from 'react';
 import logo from '../../blood_bank.png';
+import Modal from 'react-modal';
+import Validation from 'react-validation';
+import "../validation.js";
 
 class HeaderComponent extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            user: []
+            user: [],
+            modalIsOpen: false
         };
         this.loadLoggedInUser = this.loadLoggedInUser.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    closeModal(){
+        this.setState({modalIsOpen: false});
     }
 
     loadLoggedInUser(){
@@ -49,10 +65,20 @@ class HeaderComponent extends Component {
             <div className="header">
                 <a href="/" className="logo-a"><span style={style}></span></a>
                 <div className="header-links">
-                    <a href="/register">Register</a>
-                    <a href="/login">Login</a>
+                    <a href="../user/register.js">Register</a>
+                    <a onClick={this.openModal}>Login</a>
                     <a href="/search">Search</a>
                 </div>
+                <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
+                    <Form method="POST">
+                        <div className="col-md-12">
+                            <div className="form-wrap">
+                                <label>Password</label>
+                                <Input className="form-control" type='password' value='' name='passwordLogin' validations={['required', 'passwordLogin']}/>
+                            </div>
+                        </div>
+                    </Form>
+                </Modal>
             </div>
         );
     }

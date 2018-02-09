@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '.style.css';
-import error from 'error404.png';
+import './style.css';
+import error from './error404.png';
 
 export default class NotFound extends Component {
     render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '/logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
                             <a className="navbar-brand" href="#">Udhiram</a>
                         </div>
                         <div className="navbar-right">
-                            <a className="navbar-brand" href="#">Register</a>
+                            <a className="navbar-brand" href="/register">Register</a>
                             <a className="navbar-brand" href="#">Login</a>
                             <form className="navbar-form navbar-left">
                                 <div className="form-group">
@@ -35,14 +35,14 @@ class App extends Component {
                                 <div className="row">
                                     <div className="col-lg-8 col-md-7 col-sm-6 col-xs-6">
                                         <div className="Banner--Text ml30">
-                                            <p >Chennai faces fatal accidents 16% more than the other metro cities.</p>
-                                            <p>A life may depend on a gesture from you, a pint of Blood.</p>
-                                            <p>Becoming a superman is just a needle away.</p>
+                                            <p>Większą ma radość człowiek z dzielenia.</p>
+                                            <p>Oddając krew możesz pomóc osobom walczącym o życie.</p>
+                                            <p>Od bycia supermanem dzieli Cię tylko igła!</p>
                                         </div>
                                     </div>
                                     <div className="col-lg-4 col-md-5 col-sm-6 col-xs-6 tc">
                                         <div className="Banner--Image img-responsive" width="100%">
-                                            <img src="./images/blood-bag.jpg" className="img-responsive" />
+
                                         </div>
                                     </div>
                                 </div>

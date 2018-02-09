@@ -24,7 +24,7 @@ class FooterComponent extends Component {
                         </div>
                     </div>
                     <p className="small-text">
-                        All rights reserved © 2017
+                        All rights reserved © 2018
                     </p>
                 </footer>
             </div>
