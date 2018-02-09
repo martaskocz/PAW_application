@@ -65,19 +65,18 @@ class HeaderComponent extends Component {
             <div className="header">
                 <a href="/" className="logo-a"><span style={style}></span></a>
                 <div className="header-links">
-                    <a href="../user/register.js">Register</a>
+                    <a href="/register">Register</a>
                     <a onClick={this.openModal}>Login</a>
-                    <a href="/search">Search</a>
                 </div>
                 <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                    <Form method="POST">
+                    <form method="POST">
                         <div className="col-md-12">
                             <div className="form-wrap">
                                 <label>Password</label>
-                                <Input className="form-control" type='password' value='' name='passwordLogin' validations={['required', 'passwordLogin']}/>
+                                <input className="form-control" type='password' name='passwordLogin' validations={['required', 'passwordLogin']}/>
                             </div>
                         </div>
-                    </Form>
+                    </form>
                 </Modal>
             </div>
         );

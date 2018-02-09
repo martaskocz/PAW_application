@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-//import Routes from './routes.js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 import HeaderComponent from './components/header';
@@ -11,19 +10,20 @@ import App from './components/app';
 import Register from './components/user/register';
 
 import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap-theme.css';
-import * as ReactBootstrap from 'react-bootstrap';
 import './index.css';
 
+const Apps = () => (
+    <Switch>
+        <Route path="/register" component={Register}/>
+        <Route path="/" component={App}/>
+    </Switch>
+);
 
 ReactDOM.render(
     <div>
         <HeaderComponent />
         <Router>
-            <div>
-                <App/>
-                <Route path="/register" component={Register}/>
-            </div>
+            <Apps/>
         </Router>
         <FooterComponent />
     </div>,

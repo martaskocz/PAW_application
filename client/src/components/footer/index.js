@@ -23,9 +23,8 @@ class FooterComponent extends Component {
                             <div className="col-md-1"></div>
                         </div>
                     </div>
-                    <p className="small-text">
-                        All rights reserved © 2018
-                    </p>
+                    <p className="small-text">All rights reserved © 2018</p>
+                    <p className="small-text">Edited by: Marta Sobstyl, PAW 2018</p>
                 </footer>
             </div>
         );

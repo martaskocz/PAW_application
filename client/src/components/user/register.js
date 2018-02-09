@@ -1,9 +1,9 @@
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import Button from 'react-validation/build/button';
+//import Form from 'react-validation/build/form';
+//import Input from 'react-validation/build/input';
+//import Button from 'react-validation/build/button';
 import React, {Component} from 'react';
 //import Validation from 'react-validation';
-import "../validation.js";
+//import "../validation.js";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/libphonenumber.js';
 import 'react-intl-tel-input/dist/main.css';
@@ -124,33 +124,33 @@ export default class Register extends Component {
             <div className="container register-form">
                 <div className="heading-section">
                     <div className="main-heading">
-                        Become one of the most <span className="highlightme">revered</span> and <span className="highlightme">celebrated</span> blood donor...
+                        Zosatń jednym z najbardziej <span className="highlightme">szanowanych</span> i <span className="highlightme">docenianych</span> dawców krwi...
                     </div>
                     <div className="help-text">
-                        Because every pint of blood can save a life. India faces fatal accidents <span className="highlightme">6 times higher</span> than other countries...
+                        ... ponieważ każda kropla krwi może uratować życie. Dołącz do<span className="highlightme"> nas</span> i ciesz się pomaganiem innym.
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-8">
-                        <Form onSubmit={this.handleSubmit} method="POST">
+                        <form onSubmit={this.handleSubmit} method="POST">
                             <div className="panel panel-default p50 uth-panel">
                                 <div className="panel-body uth-panel-body">
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Name</label>
-                                            <Input onChange={this.logChange} className="form-control" value='' placeholder='John' name='name' validations={['required']}/>
+                                            <input onChange={this.logChange} className="form-control" placeholder='John' name='name' validations={['required']}/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Age</label>
-                                            <Input onChange={this.logChange} className="form-control" value='' placeholder='20' name='number' validations={['required', 'number']}/>
+                                            <input onChange={this.logChange} className="form-control" placeholder='20' name='number' validations={['required', 'number']}/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Email</label>
-                                            <Input onChange={this.logChange} className="form-control" value='' placeholder='email@email.com' name='email' validations={['required', 'email']}/>
+                                            <input onChange={this.logChange} className="form-control" placeholder='email@email.com' name='email' validations={['required', 'email']}/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
@@ -173,7 +173,6 @@ export default class Register extends Component {
                                                     this.setState({'address': place.formatted_address});
                                                 }}
                                                 types={['(regions)']}
-                                                componentRestrictions={{country: "in"}}
                                             />
                                         </div>
                                     </div>
@@ -200,28 +199,31 @@ export default class Register extends Component {
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Password</label>
-                                            <Input onChange={this.logChange} className="form-control" type='password' value='' name='password' validations={['required', 'password']}/>
+                                            <input onChange={this.logChange} className="form-control" type='password' name='password' validations={['required', 'password']}/>
 
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Password Confirm</label>
-                                            <Input onChange={this.logChange} className="form-control" type='password' value='' name='passwordConfirm' validations={['required', 'password']}/>
+                                            <input onChange={this.logChange} className="form-control" type='password' name='passwordConfirm' validations={['required', 'password']}/>
                                         </div>
                                     </div>
                                     <div className="row col-md-12 tc">
-                                        <Input onChange={this.logChange} id='policy' type='checkbox' errorClassName='is-invalid-input' name='policy' value='1' validations={['required']}/>
-                                        &nbsp;&nbsp;<label htmlFor="policy">I authorise the website to display my telephone number, e-mail ID and mailing address so that the needy could contact me, as and when there is an emergency.
-                                        And I also agree to the <a>terms and conditions.</a>
-                                    </label>
+                                        <div className="col-md-1">
+                                        <input onChange={this.logChange} id='policy' type='checkbox' errorClassName='is-invalid-input' name='policy' value='1' validations={['required']}/>
+                                        </div>
+                                        <div className="col-md-11">
+                                        <label htmlFor="policy">I authorise the website to display my telephone number, e-mail ID and mailing address so that the needy could contact me, as and when there is an emergency. And I also agree to the <a>terms and conditions.</a>
+                                        </label>
+                                        </div>
                                     </div>
                                     <div className="submit-section">
-                                        <Button className="btn btn-uth-submit">Submit</Button>
+                                        <button className="btn btn-uth-submit">Submit</button>
                                     </div>
                                 </div>
                             </div>
-                        </Form>
+                        </form>
                     </div>
                     <div className="col-md-4">
                         <div className="panel panel-default p25 uth-panel">

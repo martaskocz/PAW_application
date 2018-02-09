@@ -69,7 +69,8 @@ body,html{
 }
 
 .Banner--Text{
-  margin-top: 100px;
+  margin-bottom: 5%;
+  margin-top: 5%;
   padding: 20px;
   background-color: #FFFFFF;
   font-size: 24px;
@@ -79,11 +80,21 @@ body,html{
   background-color: #FFFFFF;
 }
 
-.Banner--Image img{
-  width: 100%;
-  margin-top: 50px;
+.Banner--Image{
+  text-align: center;
+  margin: auto 0;
 }
 
+.Banner--Image .helper {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Banner--Image img{
+  width: 100%;
+  vertical-align: middle;
+}
 
 .Blood--Facts{
   margin: 10px;
@@ -121,7 +132,6 @@ body,html{
   -moz-box-shadow: 2px 2px 3px 0px rgba(221,0,23,1);
   box-shadow: 2px 2px 3px 0px rgba(221,0,23,1);
 }
-
 
 .Become--Member{
   bottom: 20;
