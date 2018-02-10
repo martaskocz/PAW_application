@@ -2,6 +2,7 @@
 //import Input from 'react-validation/build/input';
 //import Button from 'react-validation/build/button';
 import React, {Component} from 'react';
+import { Redirect } from 'react-router'
 //import Validation from 'react-validation';
 //import "../validation.js";
 import IntlTelInput from 'react-intl-tel-input';
@@ -13,6 +14,7 @@ import Datetime from 'react-datetime';
 import Autocomplete from 'react-google-autocomplete';
 import Ionicon from 'react-ionicons';
 import moment from 'moment';
+import './style.css';
 
 export default class Register extends Component {
 
@@ -29,7 +31,8 @@ export default class Register extends Component {
             loading: false,
             error: false,
             bloodGroup: 'Choose',
-            policy: 0
+            policy: 0,
+            fireRedirect: false
         };
         this.logChange = this.logChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +42,7 @@ export default class Register extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({ fireRedirect: true });
         var data = {
             name: this.state.name,
             email: this.state.email,
@@ -106,7 +110,7 @@ export default class Register extends Component {
 
     render() {
         var options = [
-            { value: 'Choose', label: 'Choose your bloodgroup' },
+            { value: 'Choose', label: 'Wybierz swoją grupę krwi' },
             { value: 'A+', label: 'A+' },
             { value: 'B+', label: 'B+' },
             { value: 'O+', label: 'O+' },
@@ -116,13 +120,14 @@ export default class Register extends Component {
             { value: 'O-', label: 'O-' },
             { value: 'AB-', label: 'AB-' }
         ];
-
+        const { from } = this.props.location.state || '/'
+        const { fireRedirect } = this.state
         var searchable = false;
         return (
             <div className="container register-form">
                 <div className="heading-section">
                     <div className="main-heading">
-                        Zosatń jednym z najbardziej <span className="highlightme">szanowanych</span> i <span className="highlightme">docenianych</span> dawców krwi...
+                        Zostań jednym z najbardziej <span className="highlightme">szanowanych</span> i <span className="highlightme">docenianych</span> dawców krwi...
                     </div>
                     <div className="help-text">
                         ... ponieważ każda kropla krwi może uratować życie. Dołącz do<span className="highlightme"> nas</span> i ciesz się pomaganiem innym.
@@ -130,19 +135,19 @@ export default class Register extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-8">
-                        <form onSubmit={this.handleSubmit} method="POST">
+                        <form onSubmit={this.handleSubmit} method="POST" >
                             <div className="panel panel-default p50 uth-panel">
                                 <div className="panel-body uth-panel-body">
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Name</label>
-                                            <input onChange={this.logChange} className="form-control" placeholder='John' name='name' validations={['required']}/>
+                                            <label>Imię</label>
+                                            <input onChange={this.logChange} className="form-control" placeholder='Wpisz imię...' name='name' validations={['required']}/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Age</label>
-                                            <input onChange={this.logChange} className="form-control" placeholder='20' name='number' validations={['required', 'number']}/>
+                                            <label>Wiek</label>
+                                            <input onChange={this.logChange} className="form-control" placeholder='Wpisz swój wiek...' name='number' validations={['required', 'number']}/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
@@ -153,18 +158,19 @@ export default class Register extends Component {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Phone Number</label>
+                                            <label>Telefon</label>
                                             <IntlTelInput
                                                 css={['intl-tel-input', 'form-control']}
                                                 utilsScript={'libphonenumber.js'}
-                                                preferredCountries={['in']}
+                                                preferredCountries={['pl']}
                                                 onPhoneNumberChange={this.phoneUpdate}
+                                                placeholder='500 123 456'
                                             />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>City</label>
+                                            <label>Miasto</label>
                                             <Autocomplete
                                                 className="form-control"
                                                 onPlaceSelected={(place) => {
@@ -176,7 +182,7 @@ export default class Register extends Component {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Blood Group</label>
+                                            <label>Grupa krwi</label>
                                             <Select
                                                 name='bloodgroup'
                                                 options={options}
@@ -189,8 +195,8 @@ export default class Register extends Component {
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Date of birth</label>
-                                            <Datetime onChange={this.dateFormat} />
+                                            <label>Data urodzenia</label>
+                                            <Datetime onChange={this.dateFormat} timeFormat={false} locale="de"/>
                                             <span style={{"display": "none"}} ref="dateError" className='form-error is-visible'>You should be above 16 to donate blood.</span>
                                         </div>
                                     </div>
@@ -222,6 +228,9 @@ export default class Register extends Component {
                                 </div>
                             </div>
                         </form>
+                        {fireRedirect && (
+                            <Redirect to={from || '/'}/>
+                        )}
                     </div>
                     <div className="col-md-4">
                         <div className="panel panel-default p25 uth-panel">

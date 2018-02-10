@@ -12,7 +12,9 @@ class HeaderComponent extends Component {
         super(props);
         this.state = {
             user: [],
-            modalIsOpen: false
+            modalIsOpen: false,
+            name: '',
+            password: ''
         };
         this.loadLoggedInUser = this.loadLoggedInUser.bind(this);
         this.openModal = this.openModal.bind(this);
@@ -28,7 +30,7 @@ class HeaderComponent extends Component {
     }
 
     loadLoggedInUser(){
-        fetch('/loginuser',{
+        fetch('/login',{
             method: 'GET'
         }).then(function (response) {
             if (response.statys >=400){
@@ -51,6 +53,35 @@ class HeaderComponent extends Component {
         this.loadLoggedInUser.bind(this);
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        /*var data = {
+            name: this.state.name,
+            password: this.state.password,
+        };
+        console.log(data);*/
+        fetch("http://localhost:3001/login", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            //body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+            if(data == "success"){
+                this.refs.msg.show('Some text or component', {
+                    time: 2000,
+                    type: 'success',
+                })
+            }
+        }).catch(function(err) {
+            console.log(err)
+        });
+    }
+
     render() {
         var style = {
           backgroundImage: "url(" + logo + ")",
@@ -61,6 +92,16 @@ class HeaderComponent extends Component {
           display:"inline-block",
           backgroundRepeat: "no-repeat"
         };
+        const modalStyle = {
+            content : {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)'
+            }
+        };
         return (
             <div className="header">
                 <a href="/" className="logo-a"><span style={style}></span></a>
@@ -69,14 +110,19 @@ class HeaderComponent extends Component {
                     <a onClick={this.openModal}>Login</a>
                     <a href="/userRegister">User Register</a>
                 </div>
-                <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                    <form method="POST">
+                <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Modal" style={modalStyle}>
+                    <form onSubmit={this.handleSubmit} method="POST">
                         <div className="col-md-12">
                             <div className="form-wrap">
                                 <label>Login</label>
                                 <input className="form-control" type='text' name='login' validations={['required', 'login']}/>
+                            </div>
+                            <div className="form-wrap">
                                 <label>Password</label>
                                 <input className="form-control" type='password' name='passwordLogin' validations={['required', 'passwordLogin']}/>
+                            </div>
+                            <div className="submit-section">
+                                <button className="btn btn-uth-submit">Zaloguj</button>
                             </div>
                         </div>
                     </form>
