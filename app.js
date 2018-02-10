@@ -23,8 +23,10 @@ app.use(cookieSession({
 }));
 
 // view engine setup
+app.set("port", process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,7 +40,8 @@ app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
         host : 'localhost',
         user : 'root',
-        database : 'donorapp'
+        password : 'root',
+        database : 'admin'
     });
     res.locals.connection.connect();
     next();
@@ -66,3 +69,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+app.listen(app.get("port"), () => {
+    console.log(`Find the server at: http://localhost:${app.get("port")}/`); // eslint-disable-line no-console
+});

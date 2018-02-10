@@ -6,7 +6,7 @@ exports.formulateInsertQuery = function(data, table){
     var values = [];
     _.each(data, function(value, key) {
         fields.push(key);
-        values.push("'"+value+"'")
+        values.push("'" + value +"'");
     });
     return table+"("+fields.join(",")+") VALUES("+values.join(",")+")"
 };

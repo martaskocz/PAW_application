@@ -35,7 +35,6 @@ export default class Register extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.phoneUpdate = this.phoneUpdate.bind(this);
         this.dateFormat = this.dateFormat.bind(this)
-
     }
 
     handleSubmit(event) {
@@ -52,7 +51,7 @@ export default class Register extends Component {
             policy: this.state.policy
         };
         console.log(data);
-        fetch("http://localhost:4000/users/new", {
+        fetch("http://localhost:3001/users/new", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -67,7 +66,6 @@ export default class Register extends Component {
                 this.refs.msg.show('Some text or component', {
                     time: 2000,
                     type: 'success',
-                    icon: <img src="path/to/some/img/32x32.png" />
                 })
             }
         }).catch(function(err) {
@@ -92,7 +90,7 @@ export default class Register extends Component {
     }
 
     logChange(e) {
-        console.log(e)
+        console.log(e);
         if(e.target){
             if(e.target.name){
                 this.setState({[e.target.name]: e.target.value});
@@ -214,7 +212,7 @@ export default class Register extends Component {
                                         <input onChange={this.logChange} id='policy' type='checkbox' errorClassName='is-invalid-input' name='policy' value='1' validations={['required']}/>
                                         </div>
                                         <div className="col-md-11">
-                                        <label htmlFor="policy">I authorise the website to display my telephone number, e-mail ID and mailing address so that the needy could contact me, as and when there is an emergency. And I also agree to the <a>terms and conditions.</a>
+                                            <label htmlFor="policy">Wyrażam zgodę na użycie podanego numeru telefonu oraz adresu e-mail przez administratora Bazy Dawców Krwi w razie konieczności. Oświadczam, iż zapoznałem się z <a>warunkami rejestracji.</a>
                                         </label>
                                         </div>
                                     </div>
@@ -227,7 +225,7 @@ export default class Register extends Component {
                     </div>
                     <div className="col-md-4">
                         <div className="panel panel-default p25 uth-panel">
-                            <div className="uth-panel-head">Current Requirements</div>
+                            <div className="uth-panel-head">Obecne zapotrzebowanie</div>
                             <div className="panel-body uth-panel-body">
                                 <ul className="list-unstyled blood-requirements">
                                     <li className="requiree">

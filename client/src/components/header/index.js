@@ -37,7 +37,7 @@ class HeaderComponent extends Component {
             return response.json();
         }).then(function (data) {
             if (data === "no user"){
-                console.log("HERE")
+                console.log("HERE");
                 this.setState({user: ""})
             } else {
                 console.log("HERE2")
@@ -67,11 +67,14 @@ class HeaderComponent extends Component {
                 <div className="header-links">
                     <a href="/register">Register</a>
                     <a onClick={this.openModal}>Login</a>
+                    <a href="/userRegister">User Register</a>
                 </div>
                 <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
                     <form method="POST">
                         <div className="col-md-12">
                             <div className="form-wrap">
+                                <label>Login</label>
+                                <input className="form-control" type='text' name='login' validations={['required', 'login']}/>
                                 <label>Password</label>
                                 <input className="form-control" type='password' name='passwordLogin' validations={['required', 'passwordLogin']}/>
                             </div>
