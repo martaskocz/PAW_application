@@ -8,7 +8,7 @@ import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
 import App from './components/app';
 import Register from './components/user/register';
-import userRegister from './components/user/userRegister';
+import thanks from './components/thanks/thanks';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
@@ -16,7 +16,7 @@ import './index.css';
 const Apps = () => (
     <Switch>
         <Route path="/register" component={Register}/>
-        <Route path="/userRegister" component={userRegister}/>
+        <Route path="/thanks" component={thanks}/>
         <Route path="/" component={App}/>
     </Switch>
 );

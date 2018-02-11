@@ -229,7 +229,7 @@ export default class Register extends Component {
                             </div>
                         </form>
                         {fireRedirect && (
-                            <Redirect to={from || '/'}/>
+                            <Redirect to={from || '/thanks'}/>
                         )}
                     </div>
                     <div className="col-md-4">
@@ -239,33 +239,33 @@ export default class Register extends Component {
                                 <ul className="list-unstyled blood-requirements">
                                     <li className="requiree">
                                         <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />9884237738.</div>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Appolo Hospital, Greams Road.</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> A+ - 1 unit</span>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Saska 63/75</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Warszawie</div>
                                     </li>
                                     <li className="requiree">
                                         <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
                                         <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />9884237738.</div>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Appolo Hospital, Greams Road.</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Wrocławska 1-3</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Wojskowe CKiK w Krakowie</div>
+                                    </li>
+                                    <li className="requiree">
+                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> B- - 1 unit</span>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Czerwonego Krzyża 5/9</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK we Wrocławiu</div>
+                                    </li>
+                                    <li className="requiree">
+                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> AB+ - 1 unit</span>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Marcelińska 44</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Poznaniu</div>
                                     </li>
                                     <li className="requiree">
                                         <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
                                         <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />9884237738.</div>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Appolo Hospital, Greams Road.</div>
-                                    </li>
-                                    <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />9884237738.</div>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Appolo Hospital, Greams Road.</div>
-                                    </li>
-                                    <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />9884237738.</div>
-                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Appolo Hospital, Greams Road.</div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. I Armii Wojska Polskiego 8 </div>
+                                        <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Lublinie</div>
                                     </li>
                                 </ul>
                             </div>

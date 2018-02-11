@@ -1,0 +1,12 @@
+.Banner--Thanks {
+    padding: 5vh;
+}
+
+.Banner--Blood h3 {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.Banner--Text {
+    margin: 0;
+}
