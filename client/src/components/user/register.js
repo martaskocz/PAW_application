@@ -116,7 +116,6 @@ export default class Register extends Component {
         const { from } = this.props.location.state || '/';
         const { fireRedirect } = this.state;
         var searchable = false;
-        var required = true;
         return (
             <div className="container register-form">
                 <div className="heading-section">

@@ -3,9 +3,7 @@ var router = express.Router();
 var _ = require('underscore');
 var users = require('../module/user');
 var q = require('q');
-var bodyParser = require('body-parser');
 
-/* GET users listing. */
 router.get('/adminpanel', function(req, res, next) {
     res.locals.connection.query('select * from users', function (error, results, fields) {
         if(error) throw error;

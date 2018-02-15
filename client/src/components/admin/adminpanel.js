@@ -16,8 +16,8 @@ export default class Users extends Component {
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.logChange = this.logChange.bind(this); // We capture the value and change state as user changes the value here.
-        this.handleEdit = this.handleEdit.bind(this); // Function where we submit data
+        this.logChange = this.logChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     openModal(user) {
@@ -132,7 +132,6 @@ export default class Users extends Component {
             { value: 'AB-', label: 'AB-' }
         ];
         var searchable = false;
-
         return (
             <div className="container">
                 <div className="panel panel-default p50 uth-panel">
@@ -150,9 +149,9 @@ export default class Users extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {nthis.state.users.map((user, i) =>
+                        {this.state.users.map((user, i) =>
                             <tr key={user.id}>
-                                <td>{i}</td>
+                                <td>{i+1}</td>
                                 <td>{user.name} </td>
                                 <td>{user.email}</td>
                                 <td>{user.bloodGroup}</td>
