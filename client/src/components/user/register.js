@@ -1,11 +1,6 @@
-//import Form from 'react-validation/build/form';
-//import Input from 'react-validation/build/input';
-//import Button from 'react-validation/build/button';
 import React, {Component} from 'react';
 import { Redirect } from 'react-router'
-//import Validation from 'react-validation';
-//import "../validation.js";
-import IntlTelInput from 'react-intl-tel-input';
+import IntlTelInputApp from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/libphonenumber.js';
 import 'react-intl-tel-input/dist/main.css';
 import Select from 'react-select';
@@ -15,6 +10,7 @@ import Autocomplete from 'react-google-autocomplete';
 import Ionicon from 'react-ionicons';
 import moment from 'moment';
 import './style.css';
+require('moment/locale/en-gb');
 
 export default class Register extends Component {
 
@@ -27,10 +23,9 @@ export default class Register extends Component {
             address: '',
             dob: '',
             password: '',
-            passwordConfirm: '',
             loading: false,
             error: false,
-            bloodGroup: 'Choose',
+            bloodGroup: '',
             policy: 0,
             fireRedirect: false
         };
@@ -40,7 +35,7 @@ export default class Register extends Component {
         this.dateFormat = this.dateFormat.bind(this)
     }
 
-    handleSubmit(event) {
+    handleSubmit(event, policy) {
         event.preventDefault();
         this.setState({ fireRedirect: true });
         var data = {
@@ -50,7 +45,6 @@ export default class Register extends Component {
             address: this.state.address,
             dob: this.state.dob,
             password: this.state.password,
-            passwordConfirm: this.state.passwordConfirm,
             bloodGroup: this.state.bloodGroup,
             policy: this.state.policy
         };
@@ -59,37 +53,37 @@ export default class Register extends Component {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
-        }).then(function(response) {
+        }).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
             }
             return response.json();
-        }).then(function(data) {
+        }).then(function (data) {
             console.log(data);
-            if(data == "success"){
+            if (data == "success") {
                 this.refs.msg.show('Some text or component', {
                     time: 2000,
                     type: 'success',
                 })
             }
-        }).catch(function(err) {
+        }).catch(function (err) {
             console.log(err)
         });
     }
 
-    phoneUpdate(status, value, countryData, number, id){
+    phoneUpdate(status, value, countryData, number, id) {
         this.setState({'phone_number': number})
     }
 
     dateFormat(date){
-        var theDate = new Date(parseInt(date));
+        var theDate = new Date(date);
         var years = moment().diff(theDate, 'years');
-        if(years < 16){
+        if(years < 18){
             var span = this.refs.dateError;
             span.style.display = "block";
-            this.setState({'dob': moment(theDate).format("DD/MM/YYYY hh:mm a"), 'error': true})
+            this.setState({'dob': moment(theDate).format("YYYY/MM/DD"), 'error': true})
         } else {
-            this.setState({'dob': moment(theDate).format("DD/MM/YYYY hh:mm a"), 'error': false})
+            this.setState({'dob': moment(theDate).format("YYYY/MM/DD"), 'error': false})
         }
     }
 
@@ -110,7 +104,6 @@ export default class Register extends Component {
 
     render() {
         var options = [
-            { value: 'Choose', label: 'Wybierz swoją grupę krwi' },
             { value: 'A+', label: 'A+' },
             { value: 'B+', label: 'B+' },
             { value: 'O+', label: 'O+' },
@@ -120,9 +113,10 @@ export default class Register extends Component {
             { value: 'O-', label: 'O-' },
             { value: 'AB-', label: 'AB-' }
         ];
-        const { from } = this.props.location.state || '/'
-        const { fireRedirect } = this.state
+        const { from } = this.props.location.state || '/';
+        const { fireRedirect } = this.state;
         var searchable = false;
+        var required = true;
         return (
             <div className="container register-form">
                 <div className="heading-section">
@@ -141,25 +135,19 @@ export default class Register extends Component {
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Imię</label>
-                                            <input onChange={this.logChange} className="form-control" placeholder='Wpisz imię...' name='name' validations={['required']}/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12">
-                                        <div className="form-wrap">
-                                            <label>Wiek</label>
-                                            <input onChange={this.logChange} className="form-control" placeholder='Wpisz swój wiek...' name='number' validations={['required', 'number']}/>
+                                            <input onChange={this.logChange} className="form-control" placeholder='Wpisz imię...' name='name' required/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Email</label>
-                                            <input onChange={this.logChange} className="form-control" placeholder='email@email.com' name='email' validations={['required', 'email']}/>
+                                            <input onChange={this.logChange} className="form-control" placeholder='email@email.com' name='email' type="email" required/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Telefon</label>
-                                            <IntlTelInput
+                                            <IntlTelInputApp
                                                 css={['intl-tel-input', 'form-control']}
                                                 utilsScript={'libphonenumber.js'}
                                                 preferredCountries={['pl']}
@@ -190,32 +178,31 @@ export default class Register extends Component {
                                                 onChange={this.logChange}
                                                 searchable={searchable}
                                                 clearable={searchable}
+                                                placeholder='Wybierz swoją grupę krwi'
                                             />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
                                             <label>Data urodzenia</label>
-                                            <Datetime onChange={this.dateFormat} timeFormat={false} locale="de"/>
-                                            <span style={{"display": "none"}} ref="dateError" className='form-error is-visible'>You should be above 16 to donate blood.</span>
+                                            <Datetime onChange={this.dateFormat} timeFormat={false} required="required"/>
+                                            <span style={{"display": "none"}} ref="dateError" className='form-error is-visible'>Osoba oddająca krew musi być pełnoletnia.</span>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Password</label>
-                                            <input onChange={this.logChange} className="form-control" type='password' name='password' validations={['required', 'password']}/>
-
+                                            <label>Hasło *</label>
+                                            <input onChange={this.logChange} className="form-control" type='password' name='password'/>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="form-wrap">
-                                            <label>Password Confirm</label>
-                                            <input onChange={this.logChange} className="form-control" type='password' name='passwordConfirm' validations={['required', 'password']}/>
-                                        </div>
+                                            <p>* umożliwi sprawdzić wiarygodność rejestracji użytkownika</p>
                                     </div>
+                                </div>
                                     <div className="row col-md-12 tc">
                                         <div className="col-md-1">
-                                        <input onChange={this.logChange} id='policy' type='checkbox' errorClassName='is-invalid-input' name='policy' value='1' validations={['required']}/>
+                                        <input onChange={this.logChange} id='policy' type='checkbox' errorClassName='is-invalid-input' name='policy' value='1' required="required" />
                                         </div>
                                         <div className="col-md-11">
                                             <label htmlFor="policy">Wyrażam zgodę na użycie podanego numeru telefonu oraz adresu e-mail przez administratora Bazy Dawców Krwi w razie konieczności. Oświadczam, iż zapoznałem się z <a>warunkami rejestracji.</a>
@@ -223,7 +210,7 @@ export default class Register extends Component {
                                         </div>
                                     </div>
                                     <div className="submit-section">
-                                        <button className="btn btn-uth-submit">Submit</button>
+                                        <button className="btn btn-uth-submit">Wyślij</button>
                                     </div>
                                 </div>
                             </div>
@@ -238,32 +225,32 @@ export default class Register extends Component {
                             <div className="panel-body uth-panel-body">
                                 <ul className="list-unstyled blood-requirements">
                                     <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> A+ - 1 unit</span>
+                                        <div><span style={{"fontWeight": "bold"}}>28%</span> w regionalnym banku krwi</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ios-water" color="#ff8484" />A +</span>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Saska 63/75</div>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Warszawie</div>
                                     </li>
                                     <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
+                                        <div><span style={{"fontWeight": "bold"}}>42%</span> w regionalnym banku krwi</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ios-water" color="#ff8484" /> O +</span>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Wrocławska 1-3</div>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />Wojskowe CKiK w Krakowie</div>
                                     </li>
                                     <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> B- - 1 unit</span>
+                                        <div><span style={{"fontWeight": "bold"}}>46%</span> w regionalnym banku krwi</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ios-water" color="#ff8484" /> B -</span>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Czerwonego Krzyża 5/9</div>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK we Wrocławiu</div>
                                     </li>
                                     <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> AB+ - 1 unit</span>
+                                        <div><span style={{"fontWeight": "bold"}}>57%</span> w regionalnym banku krwi</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ios-water" color="#ff8484" /> AB + </span>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. Marcelińska 44</div>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Poznaniu</div>
                                     </li>
                                     <li className="requiree">
-                                        <div style={{"fontWeight": "bold"}}>Mr. Ram, </div>
-                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ion-waterdrop" color="#ff8484" /> O+ - 1 unit</span>
+                                        <div><span style={{"fontWeight": "bold"}}>59%</span> w regionalnym banku krwi</div>
+                                        <span className="highlightme meta-details"><Ionicon fontSize="18px" icon="ios-water" color="#ff8484" /> O + </span>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-android-call" color="#4e585e" />ul. I Armii Wojska Polskiego 8 </div>
                                         <div className="meta-details"><Ionicon fontSize="18px" icon="ion-location" color="#4e585e" />RCKiK w Lublinie</div>
                                     </li>

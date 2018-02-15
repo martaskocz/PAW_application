@@ -8,6 +8,7 @@ import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
 import App from './components/app';
 import Register from './components/user/register';
+import Users from './components/admin/adminpanel';
 import thanks from './components/thanks/thanks';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,6 +18,7 @@ const Apps = () => (
     <Switch>
         <Route path="/register" component={Register}/>
         <Route path="/thanks" component={thanks}/>
+        <Route path="/users" component={Users}/>
         <Route path="/" component={App}/>
     </Switch>
 );

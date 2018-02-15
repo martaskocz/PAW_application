@@ -3,10 +3,28 @@ var router = express.Router();
 var _ = require('underscore');
 var users = require('../module/user');
 var q = require('q');
+var bodyParser = require('body-parser');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
+router.get('/adminpanel', function(req, res, next) {
+    res.locals.connection.query('select * from users', function (error, results, fields) {
+        if(error) throw error;
+        res.send(JSON.stringify(results));
+    });
+});
+
+router.post('/edit', function(req, res, next) {
+    res.locals.connection.query("update users set name = '"+req.body.name+"', email = '"+req.body.email+"' where id = '"+req.body.id+"'", function (error, results, fields) {
+        if(error) throw error;
+        res.send(JSON.stringify(results));
+    });
+});
+
+router.post('/delete', function(req, res, next) {
+    res.locals.connection.query("delete from users where id = '"+req.body.id+"'", function (error, results, fields) {
+        if(error) throw error;
+        res.send(JSON.stringify(results));
+    });
 });
 
 router.post('/new', function(req, res, next) {
@@ -26,12 +44,5 @@ router.post('/new', function(req, res, next) {
         console.log(err.stack)
     })
 });
-
-/*router.post('/new', function(req, res, next) {
-    res.locals.connection.query('insert into users(name,email) values(' +req.body.name+ ' ' +req.body.email+''), function (error, results, fields) {
-        if(error) throw error;
-        res.send(JSON.stringify(results));
-    };
-});*/
 
 module.exports = router;

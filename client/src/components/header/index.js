@@ -1,10 +1,7 @@
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
 import React, { Component } from 'react';
 import logo from '../../blood_bank.png';
 import Modal from 'react-modal';
-import Validation from 'react-validation';
-import "../validation.js";
+
 
 class HeaderComponent extends Component {
 
@@ -108,18 +105,18 @@ class HeaderComponent extends Component {
                 <div className="header-links">
                     <a href="/register">Register</a>
                     <a onClick={this.openModal}>Login</a>
-                    <a href="/userRegister">User Register</a>
+                    <a href="/users">Admin Panel</a>
                 </div>
                 <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="Modal" style={modalStyle}>
                     <form onSubmit={this.handleSubmit} method="POST">
                         <div className="col-md-12">
                             <div className="form-wrap">
                                 <label>Login</label>
-                                <input className="form-control" type='text' name='login' validations={['required', 'login']}/>
+                                <input className="form-control" type='text' name='login' />
                             </div>
                             <div className="form-wrap">
                                 <label>Password</label>
-                                <input className="form-control" type='password' name='passwordLogin' validations={['required', 'passwordLogin']}/>
+                                <input className="form-control" type='password' name='passwordLogin'/>
                             </div>
                             <div className="submit-section">
                                 <button className="btn btn-uth-submit">Zaloguj</button>
