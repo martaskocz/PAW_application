@@ -12,7 +12,7 @@ router.get('/adminpanel', function(req, res, next) {
 });
 
 router.post('/edit', function(req, res, next) {
-    res.locals.connection.query("update users set name = '"+req.body.name+"', email = '"+req.body.email+"' where id = '"+req.body.id+"'", function (error, results, fields) {
+    res.locals.connection.query("update users set name = '"+req.body.name+"', email = '"+req.body.email+"', bloodGroup = '"+req.body.bloodGroup+"', phone_number = '"+req.body.phone_number+"' where id = '"+req.body.id+"'", function (error, results, fields) {
         if(error) throw error;
         res.send(JSON.stringify(results));
     });

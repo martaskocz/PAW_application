@@ -22,7 +22,6 @@ export default class Register extends Component {
             phone_number: '',
             address: '',
             dob: '',
-            password: '',
             loading: false,
             error: false,
             bloodGroup: '',
@@ -44,7 +43,6 @@ export default class Register extends Component {
             phone_number: this.state.phone_number,
             address: this.state.address,
             dob: this.state.dob,
-            password: this.state.password,
             bloodGroup: this.state.bloodGroup,
             policy: this.state.policy
         };
@@ -188,16 +186,6 @@ export default class Register extends Component {
                                             <span style={{"display": "none"}} ref="dateError" className='form-error is-visible'>Osoba oddająca krew musi być pełnoletnia.</span>
                                         </div>
                                     </div>
-                                    <div className="col-md-12">
-                                        <div className="form-wrap">
-                                            <label>Hasło *</label>
-                                            <input onChange={this.logChange} className="form-control" type='password' name='password'/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12">
-                                        <div className="form-wrap">
-                                            <p>* umożliwi sprawdzić wiarygodność rejestracji użytkownika</p>
-                                    </div>
                                 </div>
                                     <div className="row col-md-12 tc">
                                         <div className="col-md-1">
@@ -211,7 +199,6 @@ export default class Register extends Component {
                                     <div className="submit-section">
                                         <button className="btn btn-uth-submit">Wyślij</button>
                                     </div>
-                                </div>
                             </div>
                         </form>
                         {fireRedirect && (
@@ -220,7 +207,7 @@ export default class Register extends Component {
                     </div>
                     <div className="col-md-4">
                         <div className="panel panel-default p25 uth-panel">
-                            <div className="uth-panel-head">Obecne zapotrzebowanie</div>
+                            <div className="uth-panel-head">Obecny stan magazynowy</div>
                             <div className="panel-body uth-panel-body">
                                 <ul className="list-unstyled blood-requirements">
                                     <li className="requiree">
