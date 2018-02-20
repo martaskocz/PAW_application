@@ -25,15 +25,14 @@ class App extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 tc">
-                                        <div className="Banner--Image img-responsive" width="100%">
+                                        <div className="Banner--Image img-responsive" width="70%">
                                             <span className="helper"><img src={blood_1}/></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div className="Banner--Text">
-                                            <p>Misja Krwiodawstwa</p>
+                                        <div className="Banner--Text justify">
                                             <p>Zadaniem priorytetowym Regionalnego Centrum Krwiodawstwa i Krwiolecznictwa jest pobieranie krwi i jej składników od krwiodawców oraz przetwarzanie jej w celu wytworzenia preparatów niezbędnych dla ratowania życia i zdrowia pacjentów wymagających transfuzji. Procedury stosowane do wytworzenia składników krwi na które składa się: kwalifikacja krwiodawcy, pobranie krwi, jej przetworzenie, zbadanie, przechowanie i transportowanie gwarantują najwyższą jakość i bezpieczeństwo dla biorców.</p>
                                         </div>
                                     </div>

@@ -17,8 +17,8 @@ class HeaderComponent extends Component {
             <div className="header">
                 <a href="/" className="logo-a"><span style={style}></span></a>
                 <div className="header-links">
-                    <a href="/register">Register</a>
-                    <a href="/users">Admin Panel</a>
+                    <a href="/register">Zarejestruj się</a>
+                    <a href="/users">Panel administratora</a>
                 </div>
             </div>
         );
