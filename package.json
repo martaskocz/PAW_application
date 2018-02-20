@@ -1,6 +1,6 @@
 {
-  "name": "reactnodenew-marta",
-  "version": "0.0.0",
+  "name": "bloodgroup",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
